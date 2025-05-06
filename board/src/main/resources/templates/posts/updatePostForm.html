@@ -1,0 +1,31 @@
+<!-- File: /templates/posts/updatePostForm.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글 수정</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container my-5">
+    <h1 class="mb-4">글 수정</h1>
+    <form th:action="@{'/posts/' + ${post.id} + '/edit'}" method="post" th:object="${post}">
+        <div class="mb-3">
+            <label class="form-label">제목</label>
+            <input type="text" class="form-control" th:field="*{title}" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">내용</label>
+            <textarea class="form-control" th:field="*{content}" rows="5" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">작성자</label>
+            <input type="text" class="form-control" th:field="*{writer}" required readonly>
+        </div>
+        <button type="submit" class="btn btn-primary">수정 완료</button>
+        <a th:href="@{'/posts/' + ${post.id}}" class="btn btn-secondary">취소</a>
+    </form>
+</div>
+</body>
+</html>
