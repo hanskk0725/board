@@ -11,8 +11,11 @@
 <div class="container my-5">
     <h1 th:text="${post.title}" class="mb-3"></h1>
     <p class="text-muted">
-        작성자: <span th:text="${post.writer}"></span> |
-        작성일: <span th:text="${post.createdDate}"></span>
+        작성자: <span th:text="${post.writer}"></span><br>
+        작성일: <span th:text="${post.createdDate}"></span><br>
+        <span th:if="${post.lastModifiedDate != post.createdDate}">
+            최근수정일: <span th:text="${post.lastModifiedDate}"></span>
+        </span>
     </p>
     <hr>
     <p th:utext="${post.content}"></p>

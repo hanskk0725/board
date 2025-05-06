@@ -1,8 +1,7 @@
 package com.toyproject.board.service;
 
 import com.toyproject.board.domain.Post;
-import com.toyproject.board.repository.PostRepository;
-import org.assertj.core.api.Assertions;
+import com.toyproject.board.repository.PostJpaRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,7 +15,7 @@ import static org.assertj.core.api.Assertions.*;
 class PostServiceTest {
 
     @Autowired private PostService postService;
-    @Autowired private PostRepository postRepository;
+    @Autowired private PostJpaRepository postJpaRepository;
 
     @Test
     @Rollback(false)
@@ -26,9 +25,9 @@ class PostServiceTest {
         String writer = "writer";
 
         Post post = Post.createPost(title, content, writer);
-        postRepository.save(post);
+        postJpaRepository.save(post);
 
-        Post findPost = postRepository.findOne(post.getId());
+        Post findPost = postJpaRepository.findOne(post.getId());
 
         assertThat(post.getId()).isEqualTo(findPost.getId());
     }
@@ -36,7 +35,7 @@ class PostServiceTest {
     @Test
     @Rollback(value = false)
     void updatePost(){
-        Post findPost = postRepository.findOne(1L);
+        Post findPost = postJpaRepository.findOne(1L);
 
         String content = "updatedPost";
         findPost.updatePost(findPost.getTitle(), content);
@@ -49,8 +48,8 @@ class PostServiceTest {
     @Test
     @Rollback(false)
     void deletePost(){
-        postRepository.findOne(1L);
+        postJpaRepository.findOne(1L);
         postService.deletePost(1L);
-        assertThat(postRepository.findOne(1L)).isNull();
+        assertThat(postJpaRepository.findOne(1L)).isNull();
     }
 }

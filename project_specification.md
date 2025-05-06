@@ -94,4 +94,17 @@ resources/templates
 - 검색 기능 (제목, 작성자 기준)
 - 글/댓글 비밀번호 설정 기능 (수정/삭제 시 확인용)
 
+## 9. 추가 기능
+- Spring Data JPA 적용
+- 페이징 적용
+
+
+###추가기능 구현(2025/05/06)
+1. postResitory 생성
+2. 참조 변경(service)
+3. 더미 데이터 추가
+4. BaseTimeEntity 생성 등록
+5. posts/post.html 파일 수정
+    - 게시물 수정된 경우 최근수정일 표현
+6. 게시글 페이징 처리
 
