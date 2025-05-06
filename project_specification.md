@@ -99,7 +99,7 @@ resources/templates
 - 페이징 적용
 
 
-###추가기능 구현(2025/05/06)
+## 추가기능 구현(2025/05/06)
 1. postResitory 생성
 2. 참조 변경(service)
 3. 더미 데이터 추가
