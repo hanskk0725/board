@@ -3,10 +3,13 @@ package com.toyproject.board.dto;
 import com.toyproject.board.domain.Post;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class PostListDto {
 
     private Long id;

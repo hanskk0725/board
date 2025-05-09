@@ -3,11 +3,13 @@ package com.toyproject.board.controller;
 import com.toyproject.board.domain.Post;
 import com.toyproject.board.dto.PostListDto;
 import com.toyproject.board.dto.PostSaveDto;
+import com.toyproject.board.dto.PostSearchCond;
 import com.toyproject.board.service.PageInfo;
 import com.toyproject.board.service.PostService;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,25 +23,19 @@ public class PostController {
 
     private final PostService postService;
 
-//    @GetMapping("/posts")
-    public String allPosts(Model model) {
-        List<Post> allPosts = postService.getAllPosts();
-        List<PostListDto> listDto = allPosts.stream()
-                .map(p -> new PostListDto(p))
-                .toList();
-        model.addAttribute("posts", listDto);
-        return "posts/list";
-    }
-
     //페이징
     @GetMapping("/posts")
     public String pagedPosts(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
+            @RequestParam(required = false) String title,
+            @RequestParam(required = false) String writer,
             Model model) {
-        Page<Post> pagedPosts = postService.getPagedPosts(page, size);
-        Page<PostListDto> postDto = pagedPosts.map(p -> new PostListDto(p));
 
+        PageRequest pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "id"));
+        PostSearchCond condition = new PostSearchCond(title, writer);
+
+        Page<PostListDto> postDto = postService.searchPagedPosts(condition, pageable);
         PageInfo pageInfo = new PageInfo(postDto);
 
         model.addAttribute("posts", postDto);

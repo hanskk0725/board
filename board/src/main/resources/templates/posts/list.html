@@ -1,6 +1,6 @@
 <!-- File: /templates/posts/list.html -->
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +11,16 @@
 <div class="container my-5">
     <h1 class="mb-4">게시판</h1>
     <a href="/posts/new" class="btn btn-success mb-3">글쓰기</a>
+
+    <!-- 검색기능 -->
+    <form th:action="@{/posts}" method="get" class="mb-3 d-flex gap-2">
+        <input type="text" class="form-control" name="title" placeholder="제목 검색"
+               th:value="${param.title}">
+        <input type="text" class="form-control" name="writer" placeholder="작성자 검색"
+               th:value="${param.writer}">
+        <button type="submit" class="btn btn-primary">검색</button>
+    </form>
+
     <table class="table table-hover">
         <thead class="table-dark">
         <tr>

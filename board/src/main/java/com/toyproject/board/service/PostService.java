@@ -1,6 +1,8 @@
 package com.toyproject.board.service;
 
 import com.toyproject.board.domain.Post;
+import com.toyproject.board.dto.PostListDto;
+import com.toyproject.board.dto.PostSearchCond;
 import com.toyproject.board.repository.PostJpaRepository;
 import com.toyproject.board.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
@@ -53,5 +55,9 @@ public class PostService {
         Post post = postRepository.findById(id).orElseThrow(() -> new NoSuchElementException("게시물이 없습니다."));
 
         postRepository.delete(post);
+    }
+
+    public Page<PostListDto> searchPagedPosts(PostSearchCond condition, PageRequest pageable) {
+        return postRepository.search(condition, pageable);
     }
 }

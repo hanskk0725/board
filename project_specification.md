@@ -88,10 +88,10 @@ resources/templates
 3. 유효성 검증
 
 ## 8. 추후 확장 부분
-- 페이징 처리 (Spring Data Pageable 활용)
-- 유효성 검증 및 예외 처리
+- 페이징 처리 (Spring Data Pageable 활용) ✅
+- 검색 기능 (제목, 작성자 기준) ✅
 - 댓글 기능 추가
-- 검색 기능 (제목, 작성자 기준)
+- 유효성 검증 및 예외 처리 
 - 글/댓글 비밀번호 설정 기능 (수정/삭제 시 확인용)
 
 ## 9. 추가 기능
@@ -100,7 +100,7 @@ resources/templates
 
 
 ## 추가기능 구현(2025/05/06)
-1. postResitory 생성
+1. postResitory 생성(Spring Data JPA)
 2. 참조 변경(service)
 3. 더미 데이터 추가
 4. BaseTimeEntity 생성 등록
@@ -108,3 +108,9 @@ resources/templates
     - 게시물 수정된 경우 최근수정일 표현
 6. 게시글 페이징 처리
 
+
+## 추가기능 구현(2025/05/08~09)
+1. QueryDsl 추가
+2. 검색 기능 추가(제목, 작성자 기준)
+    - querydsl 정렬을 동적으로 구현하기 어려운점
+        - 우선 정적으로 쿼리자체에 정렬처리
